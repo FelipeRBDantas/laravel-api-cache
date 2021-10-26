@@ -45,34 +45,40 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $identify
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($identify)
     {
-        //
+        $course = $this->courseService->getCourse($identify);
+
+        return new CourseResource($course);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $identify
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateCourse $request, $identify)
     {
-        //
+        $this->courseService->updateCourse($identify, $request->validated());
+
+        return response()->json(['message' => 'updated']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string  $identify
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($identify)
     {
-        //
+        $this->courseService->deleteCourse($identify);
+
+        return response()->json([], 204);
     }
 }
