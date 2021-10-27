@@ -21,11 +21,6 @@ class CourseRepository
                 ->with('modules.lessons')
                 ->get();
         });
-        // return Cache::remember('courses', 60, function () {
-        //     return $this->entity
-        //         ->with('modules.lessons')
-        //         ->get();
-        // });
     }
     
     public function createNewCourse(array $data)
@@ -35,15 +30,19 @@ class CourseRepository
     
     public function getCourseByUuid(string $identify, bool $loadRelationships = true)
     {
-        return $this->entity
-            ->where('uuid', $identify)
-            ->with([$loadRelationships ? 'modules.lessons' : ''])
-            ->firstOrFail();
+        $query = $this->entity->where('uuid', $identify);
+
+        if ($loadRelationships)
+            $query->with('modules.lessons');
+            
+        return $query->firstOrFail();
     }
     
     public function deleteCourseByUuid($identify)
     {
         $course = $this->getCourseByUuid($identify, false);
+
+        Cache::forget('courses');
 
         return $course->delete();
     }
@@ -51,6 +50,8 @@ class CourseRepository
     public function updateCourseByUuid($identify, $data)
     {
         $course = $this->getCourseByUuid($identify, false);
+
+        Cache::forget('courses');
 
         return $course->update($data);
     }
