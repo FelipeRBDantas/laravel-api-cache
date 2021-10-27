@@ -5,7 +5,7 @@ use App\Http\Controllers\Api\{
     CourseController, ModuleController, LessonController
 };
 
-Route::apiResource('/courses/{module}/lessons', LessonController::class);
+Route::apiResource('/modules/{module}/lessons', LessonController::class);
 
 Route::apiResource('/courses/{course}/modules', ModuleController::class);
 
