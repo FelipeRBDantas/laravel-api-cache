@@ -8,10 +8,12 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use App\Models\{
     Course,
+    Lesson,
     Module
 };
 use App\Observers\{
     CourseObserver,
+    LessonObserver,
     ModuleObserver
 };
 
@@ -37,5 +39,6 @@ class EventServiceProvider extends ServiceProvider
     {
         Course::observe(CourseObserver::class);
         Module::observe(ModuleObserver::class);
+        Lesson::observe(LessonObserver::class);
     }
 }
