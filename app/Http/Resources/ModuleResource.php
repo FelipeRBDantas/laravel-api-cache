@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\LessonResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ModuleResource extends JsonResource
@@ -17,6 +18,7 @@ class ModuleResource extends JsonResource
         return [
             'name' => $this->name,
             'identify' => $this->uuid,
+            'lessons' => LessonResource::collection($this->whenLoaded('lessons')),
         ];
     }
 }
