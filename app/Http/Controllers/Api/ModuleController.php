@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Services\ModuleService;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ModuleResource;
@@ -45,6 +44,7 @@ class ModuleController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  string  $course
      * @param  string  $identify
      * @return \Illuminate\Http\Response
      */

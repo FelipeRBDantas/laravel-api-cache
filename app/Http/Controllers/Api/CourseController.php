@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateCourse;
 use App\Http\Resources\CourseResource;
 use App\Services\CourseService;
-use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
