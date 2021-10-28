@@ -119,7 +119,7 @@ class ModuleTest extends TestCase
 
         $response = $this->putJson("/courses/{$course->uuid}/modules/{$module->uuid}", [
             'course' => $course->uuid,
-            'name' => 'Módulo 01',
+            'name' => 'Módulo Updated',
         ]);
 
         $response->assertStatus(200);

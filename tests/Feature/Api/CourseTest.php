@@ -113,7 +113,7 @@ class CourseTest extends TestCase
         $course = Course::factory()->create();
 
         $response = $this->putJson("/courses/{$course->uuid}", [
-            'name' => 'Novo Updated'
+            'name' => 'Novo Curso Updated'
         ]);
 
         $response->assertStatus(200);
@@ -127,7 +127,7 @@ class CourseTest extends TestCase
     public function test_update_notfound_course()
     {
         $response = $this->putJson('/courses/fake_value', [
-            'name' => 'Novo Updated'
+            'name' => 'Novo Curso Updated'
         ]);
 
         $response->assertStatus(404);
